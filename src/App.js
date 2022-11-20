@@ -1,4 +1,5 @@
 import { Component } from "./components/Component"
+import "./App.scss"
 
 function App() {
 	return (

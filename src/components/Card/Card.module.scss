@@ -1,0 +1,53 @@
+.card {
+	max-width: 80%;
+	margin: 0 auto;
+	border-radius: 0.5em;
+	overflow: hidden;
+	background-color: #fff;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.526);
+	&Image {
+		width: 100%;
+	}
+
+	&Info {
+		padding: 1rem 2rem 1.3rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+	&Header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	&Title {
+		font-size: 1.3rem;
+	}
+	&Price {
+		color: darken(lightblue, 30);
+		background-color: lighten(lightblue, 10);
+		padding: 0.5em;
+		border-radius: 0.2em;
+		font-weight: bold;
+		letter-spacing: 0.08em;
+	}
+	&Text {
+		color: rgb(63, 95, 103);
+
+		span {
+			color: darken(lightblue, 20);
+		}
+	}
+	&Close {
+		width: max-content;
+		padding: 0.5em 2em;
+		align-self: center;
+		color: red;
+		border: 1px solid red;
+		border-radius: 0.3em;
+		text-transform: capitalize;
+		font-size: 1rem;
+		background: transparent;
+		cursor: pointer;
+	}
+}
