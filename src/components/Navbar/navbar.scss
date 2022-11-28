@@ -1,0 +1,23 @@
+.nav-bar {
+	background-color: white;
+	padding: 1rem 2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+
+	.avatar {
+		width: 50px;
+		aspect-ratio: 1 / 1;
+		border-radius: 50%;
+	}
+
+	b {
+		text-transform: uppercase;
+	}
+
+	.btn-logout {
+		color: gray;
+		font-size: 1.3rem;
+	}
+}
