@@ -4,20 +4,39 @@ import { FiUsers, FiUserPlus } from "react-icons/fi"
 import { BsCodeSquare } from "react-icons/bs"
 
 import "./quick-stats.scss"
-
-const items = [
-	{ img: <AiFillBook />, color: "hotpink", value: "229", prop: "repos" },
-	{ img: <FiUsers />, color: "lightgreen", value: "229", prop: "followers" },
-	{
-		img: <FiUserPlus />,
-		color: "blueviolet",
-		value: "229",
-		prop: "Following",
-	},
-	{ img: <BsCodeSquare />, color: "orange", value: "229", prop: "Gists" },
-]
+import { useGlobalContext } from "AppProvider"
 
 export const QuickStats = () => {
+	const { foundUser } = useGlobalContext()
+	const { public_repos, public_gists, followers, following } = foundUser
+
+	const items = [
+		{
+			img: <AiFillBook />,
+			color: "hotpink",
+			value: public_repos,
+			prop: "Repos",
+		},
+		{
+			img: <FiUsers />,
+			color: "lightgreen",
+			value: followers,
+			prop: "Followers",
+		},
+		{
+			img: <FiUserPlus />,
+			color: "blueviolet",
+			value: following,
+			prop: "Following",
+		},
+		{
+			img: <BsCodeSquare />,
+			color: "orange",
+			value: public_gists,
+			prop: "Gists",
+		},
+	]
+
 	return (
 		<div className="quick-stat-list">
 			{items.map((item, index) => {

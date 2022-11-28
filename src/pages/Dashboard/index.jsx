@@ -15,8 +15,10 @@ export const Dashboard = () => {
 			<div className="dashboard">
 				<Searchbar />
 				<QuickStats />
-				<UserCard />
-				<FollowersCard />
+				<div className="cards">
+					<UserCard />
+					<FollowersCard />
+				</div>
 				<Charts />
 			</div>
 		</main>

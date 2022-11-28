@@ -26,5 +26,45 @@
 	.users-list {
 		height: 200px;
 		overflow-y: auto;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+
+		&::-webkit-scrollbar {
+			display: block;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background-color: blue;
+			&:hover {
+				background-color: rgb(53, 166, 186);
+			}
+		}
+		&::-webkit-scrollbar-track {
+			background-color: lightblue;
+		}
+		&::-webkit-scrollbar-button {
+			display: none;
+		}
+	}
+}
+.user-list-item {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+
+	img {
+		width: 50px;
+		aspect-ratio: 1/1;
+		border-radius: 50%;
+	}
+	.info {
+		display: flex;
+		flex-direction: column;
+		gap: 0.3rem;
+		.link {
+			text-decoration: none;
+			color: gray;
+		}
 	}
 }

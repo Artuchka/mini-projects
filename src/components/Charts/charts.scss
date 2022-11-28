@@ -1,0 +1,13 @@
+.charts {
+	$gap: 2rem;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: repeat(4, 400px);
+	gap: $gap;
+	max-width: 100%;
+	width: 100%;
+	@media (min-width: 900px) {
+		grid-template-columns: calc(40% - $gap/2) calc(60% - $gap/2);
+		grid-template-rows: 400px 400px;
+	}
+}
