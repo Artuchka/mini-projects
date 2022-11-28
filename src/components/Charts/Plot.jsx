@@ -29,17 +29,26 @@ const chartConfigs = {
 	dataFormat: "json",
 	dataSource: {
 		chart: {
-			caption: "im title for chart",
-			subCaption: "im subcaption",
-			xAxisName: "im x axis",
-			yAxisName: "im y axis",
-			numberSuffix: "$$$",
+			caption: "Most Popular",
+			xAxisName: "Repos",
+			yAxisName: "Stars",
+			numberSuffix: "",
 			theme: "fusion",
 		},
 		data: chartData,
 	},
 }
 
-export const Plot = () => {
-	return <ReactFC {...chartConfigs} />
+export const Plot = ({ popularStats }) => {
+	popularStats.length = 5
+	const newData = popularStats.map((stat) => ({
+		label: stat.name,
+		value: stat.stars,
+	}))
+	return (
+		<ReactFC
+			{...chartConfigs}
+			dataSource={{ ...chartConfigs.dataSource, data: newData }}
+		/>
+	)
 }

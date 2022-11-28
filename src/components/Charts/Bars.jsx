@@ -3,27 +3,16 @@ import React from "react"
 import FusionCharts from "fusioncharts"
 import charts from "fusioncharts/fusioncharts.charts"
 import ReactFusioncharts from "react-fusioncharts"
-export const Bars = () => {
-	return (
-		<ReactFusioncharts
-			type="bar2d"
-			width="100%"
-			height="100%"
-			dataFormat="JSON"
-			dataSource={dataSource}
-		/>
-	)
-}
 
 // Resolves charts dependancy
 charts(FusionCharts)
 
-const dataSource = {
+const dataSrc = {
 	chart: {
-		caption: "Lead sources by industry",
-		yaxisname: "Number of Leads",
+		caption: "Times Forked  by Repos",
+		yaxisname: "Number of Forks",
 		aligncaptionwithcanvas: "0",
-		plottooltext: "<b>$dataValue</b> leads received",
+		plottooltext: "forked <b>$dataValue</b> times",
 		theme: "fusion",
 	},
 	data: [
@@ -40,4 +29,21 @@ const dataSource = {
 			value: "38",
 		},
 	],
+}
+
+export const Bars = ({ forkStats }) => {
+	forkStats.length = 10
+	const newData = forkStats.map((item) => ({
+		label: item.name,
+		value: item.forks,
+	}))
+	return (
+		<ReactFusioncharts
+			type="bar2d"
+			width="100%"
+			height="100%"
+			dataFormat="JSON"
+			dataSource={{ ...dataSrc, data: newData }}
+		/>
+	)
 }
