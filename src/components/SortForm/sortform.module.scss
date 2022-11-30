@@ -1,0 +1,40 @@
+.form {
+	margin-top: 2rem;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	padding: 1rem;
+	.line {
+		flex-grow: 1;
+		background-color: rgb(123, 122, 122);
+		opacity: 0.7;
+		height: 1px;
+		margin-block: auto;
+		margin-inline: 1rem;
+	}
+
+	.view-container {
+		display: flex;
+		gap: 1rem;
+		font-size: 1.6rem;
+		input[type="radio"] {
+			display: none;
+
+			&:checked + label {
+				color: orange;
+			}
+		}
+	}
+	.sortby-container {
+		display: flex;
+		gap: 1rem;
+		align-items: center;
+
+		select {
+			background-color: rgba(128, 128, 128, 0.478);
+			border: none;
+			outline: none;
+			padding: 0.5em 1em;
+		}
+	}
+}

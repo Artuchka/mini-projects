@@ -1,0 +1,23 @@
+.product {
+	background-color: #fff;
+	max-width: 90%;
+	width: 100%;
+	img {
+		width: 100%;
+		min-height: 200px;
+		object-fit: cover;
+		border-radius: 0.3em;
+	}
+	.info {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0.5em 0;
+	}
+	.name {
+		text-transform: capitalize;
+	}
+	.price {
+		color: orange;
+	}
+}
