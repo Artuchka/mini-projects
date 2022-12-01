@@ -6,20 +6,22 @@ import { FaUserPlus, FaShoppingCart } from "react-icons/fa"
 
 import imgLogo from "./../../assets/img/logo.svg"
 import styles from "./header.module.scss"
-
+import { useState } from "react"
+console.log(styles)
 export const Header = () => {
-	const isMenuOpen = false
+	const [isMenuOpen, setMenuOpen] = useState(false)
 	const handleMenuOpen = () => {
-		console.log("kinda opening menu")
+		setMenuOpen(true)
 	}
 	const handleMenuClose = () => {
-		console.log("kinda closing menu")
+		setMenuOpen(false)
 	}
 
 	return (
 		<div className={styles.header}>
 			<img src={imgLogo} alt="" className="logo" />
 			<AiOutlineMenu className={styles.menu} onClick={handleMenuOpen} />
+
 			<div
 				className={`${styles["menu-mobile"]} ${
 					isMenuOpen ? styles["open"] : ""
@@ -32,15 +34,21 @@ export const Header = () => {
 					</div>
 				</div>
 				<ul className={styles["menu-list"]}>
-					<Link to="/" className={styles["menu-item"]}>
-						Home
-					</Link>
-					<Link to="/about" className={styles["menu-item"]}>
-						About
-					</Link>
-					<Link to="/products" className={styles["menu-item"]}>
-						Products
-					</Link>
+					<li>
+						<Link to="/" className={styles["menu-item"]}>
+							Home
+						</Link>
+					</li>
+					<li>
+						<Link to="/about" className={styles["menu-item"]}>
+							About
+						</Link>
+					</li>
+					<li>
+						<Link to="/products" className={styles["menu-item"]}>
+							Products
+						</Link>
+					</li>
 				</ul>
 				<div className={styles["icons"]}>
 					<div className={styles["cart-icon"]}>

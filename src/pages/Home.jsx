@@ -4,6 +4,7 @@ import { Product } from "./../components/Product"
 import { Link } from "react-router-dom"
 
 import "./styles/home.scss"
+import { Footer } from "../components/Footer"
 
 export const Home = () => {
 	return (
@@ -66,13 +67,7 @@ export const Home = () => {
 					<button className="btn">subscribe</button>
 				</form>
 			</section>
-
-			<footer className="footer">
-				<div>
-					<div className="copyright">© 2022 ComfySloth</div>
-					<div className="rights">All rights reserved</div>
-				</div>
-			</footer>
+			<Footer />
 		</main>
 	)
 }

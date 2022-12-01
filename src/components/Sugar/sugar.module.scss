@@ -1,0 +1,21 @@
+$main-color: #ab7a5f;
+$title-color: #102a42;
+$text-color: #617d98;
+$footer-bg-color: #222;
+
+.sugar {
+	font-size: 2rem;
+	text-transform: capitalize;
+	color: $main-color;
+	font-weight: bold;
+	padding: 3rem 2rem;
+	background-color: lighten($main-color, 30);
+
+	.sugar-link {
+		color: $main-color;
+		text-decoration: none;
+		&.active {
+			color: darken($main-color, 20);
+		}
+	}
+}

@@ -1,0 +1,109 @@
+$main-color: #ab7a5f;
+$title-color: #102a42;
+$text-color: darken(#617d98, 10);
+$footer-bg-color: #222;
+
+.main {
+	padding: 1rem 2rem;
+	margin-top: 4rem;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 2rem;
+
+	.info {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		.name {
+			text-transform: capitalize;
+			font-weight: bold;
+			font-size: 2rem;
+			color: $title-color;
+		}
+
+		.price {
+			color: $main-color;
+		}
+		.desc {
+			color: $text-color;
+			line-height: 1.5rem;
+		}
+	}
+
+	.grid-info {
+		color: $text-color;
+		display: grid;
+		width: 300px;
+		grid-template-columns: repeat(2, auto);
+		span:nth-of-type(odd) {
+			color: darken($text-color, 30);
+			font-weight: bold;
+			&::after {
+				content: " :";
+			}
+		}
+	}
+
+	.actions {
+		margin-top: 1rem;
+		min-width: 100px;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		.colors-input {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 1rem;
+		}
+		.colors {
+			display: flex;
+			gap: 1rem;
+			.color-radio {
+				--bg-color: red;
+				position: relative;
+				&.active {
+					&::after {
+						content: "✔";
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						font-weight: bold;
+					}
+				}
+				&::after {
+					background-color: var(--bg-color);
+					width: 200%;
+					height: 200%;
+					border-radius: 50%;
+					color: white;
+					content: "";
+
+					position: absolute;
+					display: inline-block;
+					top: 50%;
+					left: 50%;
+					translate: -50% -50%;
+				}
+			}
+		}
+	}
+}
+
+.count {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	span {
+		font-size: 2rem;
+		font-weight: bold;
+	}
+}
+.btn--amount {
+	border: none;
+	background: transparent;
+	font-size: 2rem;
+	color: black;
+}

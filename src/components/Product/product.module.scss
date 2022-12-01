@@ -1,12 +1,56 @@
+$main-color: #ab7a5f;
+$title-color: #102a42;
+$text-color: #617d98;
+$footer-bg-color: #222;
+
 .product {
 	background-color: #fff;
-	max-width: 90%;
-	width: 100%;
+	max-width: 600px;
+	width: 90%;
+
+	.image-container {
+		height: 200px;
+		position: relative;
+		overflow: hidden;
+		border-radius: 0.3em;
+
+		&:hover {
+			.lookup {
+				opacity: 1;
+			}
+		}
+	}
 	img {
 		width: 100%;
-		min-height: 200px;
+		height: 100%;
 		object-fit: cover;
-		border-radius: 0.3em;
+	}
+	.lookup {
+		text-decoration: none;
+		display: block;
+		position: absolute;
+		inset: 0;
+		background-color: rgba(0, 0, 0, 0.417);
+		z-index: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0;
+		transition: all 0.3s ease-in-out;
+		a {
+			cursor: pointer;
+			color: white;
+
+			background-color: $main-color;
+			border-radius: 50%;
+			width: 2em;
+			height: 2em;
+			font-weight: bold;
+			font-size: 2rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
 	}
 	.info {
 		display: flex;
@@ -16,8 +60,10 @@
 	}
 	.name {
 		text-transform: capitalize;
+		letter-spacing: 0.2em;
 	}
 	.price {
-		color: orange;
+		color: $main-color;
+		font-weight: bold;
 	}
 }

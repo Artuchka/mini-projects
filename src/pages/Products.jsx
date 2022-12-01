@@ -5,8 +5,11 @@ import { SortForm } from "../components/SortForm"
 import { Product } from "../components/Product"
 
 import "./styles/products.scss"
+import { useGlobalContext } from "../AppProvider"
 
 export const Products = () => {
+	const { isLoading, items, error } = useGlobalContext()
+	// console.log(items)
 	return (
 		<div>
 			<Sugar />
@@ -14,9 +17,9 @@ export const Products = () => {
 			<SortForm />
 
 			<div className="product-list">
-				<Product />
-				<Product />
-				<Product />
+				{items.map((item) => {
+					return <Product key={item.id} {...item} />
+				})}
 			</div>
 		</div>
 	)

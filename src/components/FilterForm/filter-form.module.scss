@@ -31,7 +31,7 @@
 		&:checked + label {
 			opacity: 1;
 			&::after {
-				content: "y";
+				content: "✔";
 				position: absolute;
 				color: white;
 				top: 50%;
@@ -70,4 +70,13 @@
 	display: flex;
 	justify-content: space-between;
 	gap: 1rem;
+}
+
+.search {
+	border: none;
+	padding: 0.5em 1em;
+	font-size: 1rem;
+	color: rgb(124, 124, 124);
+	background-color: rgba(206, 238, 143, 0.507);
+	border-radius: 0.5em;
 }

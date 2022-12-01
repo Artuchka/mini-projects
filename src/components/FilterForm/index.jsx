@@ -13,6 +13,7 @@ export const FilterForm = () => {
 			initialValues={{
 				search: "sofa",
 				company: "all",
+				category: "all",
 				color: "red",
 				price: "1200",
 				"free-shipping": "false",
@@ -25,7 +26,12 @@ export const FilterForm = () => {
 					}}
 					className={style["form"]}
 				>
-					<Field type="text" name="search" placeholder="Search" />
+					<Field
+						type="text"
+						name="search"
+						className={style["search"]}
+						placeholder="Search"
+					/>
 
 					<div className="category">
 						<div className={style["title"]}>category</div>

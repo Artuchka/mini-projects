@@ -1,7 +1,6 @@
 import React from "react"
 
 import styles from "./info-card.module.scss"
-console.log(styles)
 
 export const InfoCard = () => {
 	return (
