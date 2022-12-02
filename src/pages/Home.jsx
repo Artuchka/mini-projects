@@ -7,13 +7,19 @@ import "./styles/home.scss"
 import { Footer } from "../components/Footer"
 import { useProductsContext } from "../AppProvider"
 import { Loading } from "../components/Loading"
+import { useEffect } from "react"
 
 export const Home = () => {
 	const {
 		items,
 		isAllLoading: loading,
 		errorAll: error,
+		fetchAll,
 	} = useProductsContext()
+
+	useEffect(() => {
+		fetchAll()
+	}, [])
 	if (loading) {
 		return <Loading />
 	}
