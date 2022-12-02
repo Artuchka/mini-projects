@@ -3,48 +3,57 @@ import { Link, useParams } from "react-router-dom"
 import { Sugar } from "../components/Sugar"
 import { ImageViewer } from "../components/ImageViewer"
 import "./styles/singleProduct.scss"
-import { useGlobalContext } from "../AppProvider"
+import { useProductsContext } from "../AppProvider"
 import defImg1 from "./../assets/img/singleProduct/1.jpeg"
 import defImg2 from "./../assets/img/singleProduct/2.jpeg"
 import defImg3 from "./../assets/img/singleProduct/3.jpeg"
 import defImg4 from "./../assets/img/singleProduct/4.jpeg"
-import { Field, Form, Formik, useFormik } from "formik"
 import { useState } from "react"
+import { Actions } from "../components/Actions"
+import { useFetchSingle } from "../customHooks/useFetchSingle"
+import { Loading } from "../components/Loading"
+import { useEffect } from "react"
 
 export const SingleProduct = () => {
 	const { id } = useParams()
-	const { items } = useGlobalContext()
-	const item = items.find((obj) => obj.id === id)
-	const [amount, setAmount] = useState(1)
+	const {
+		singleItem: item,
+		fetchSingle,
+		isSingleLoading: loading,
+		errorSingle: error,
+	} = useProductsContext()
+	console.log(loading)
+	useEffect(() => {
+		fetchSingle(id)
+	}, [id])
 
-	const handleAdd = () => {
-		setAmount((prev) => prev + 1)
-	}
-	const handleRemove = () => {
-		setAmount((prev) => prev - 1)
-	}
-	const handleAddToCard = () => {
-		console.log("kinda adding to cart")
-	}
-
-	const formik = useFormik({
-		initialValues: {
-			color: "",
-		},
-		onSubmit(values) {
-			console.log(values)
-		},
-		onChange(values) {
-			console.log(values)
-		},
-	})
-
-	if (!item) {
-		return <h1>sorry could find your item</h1>
+	if (loading) {
+		return <Loading />
 	}
 
-	const { image, name, colors, company, description, price, shipping } = item
-	const images = [image, defImg1, defImg2, defImg3, defImg4]
+	if (error.code !== "") {
+		const { message, code, name } = error
+
+		return (
+			<h1>
+				Error occured: {message} {code}
+			</h1>
+		)
+	}
+
+	const {
+		images,
+		name,
+		category,
+		reviews,
+		stars,
+		stock,
+		colors,
+		company,
+		description,
+		price,
+		shipping,
+	} = item
 	return (
 		<div className="single-product">
 			<Sugar />
@@ -62,76 +71,14 @@ export const SingleProduct = () => {
 					<div className="desc">{description}</div>
 					<div className="grid-info">
 						<span>Available</span>
-						<span>In Stock</span>
+						<span>{stock}</span>
 						<span>SKU</span>
 						<span>{id}</span>
 						<span>Brand</span>
 						<span>{company}</span>
 					</div>
 				</div>
-				<Formik
-					initialValues={{
-						picked: "",
-					}}
-					onSubmit={async (values) => {
-						await new Promise((r) => setTimeout(r, 500))
-						alert(JSON.stringify(values, null, 2))
-					}}
-				>
-					{({ values }) => (
-						<Form
-							className="actions"
-							onChange={() => {
-								console.log(values)
-							}}
-						>
-							<div className="colors-input">
-								<h4>Colors: </h4>
-								<div className="colors">
-									{colors.map((color) => {
-										return (
-											<Field
-												key={color}
-												type="radio"
-												name="color"
-												value={color}
-												className={`color-radio ${
-													values.color === color
-														? "active"
-														: ""
-												}`}
-												style={{ "--bg-color": color }}
-											/>
-										)
-									})}
-								</div>
-							</div>
-
-							<div className="count">
-								<button
-									onClick={handleRemove}
-									disabled={amount <= 1}
-									type="button"
-									className="btn--amount"
-								>
-									-
-								</button>
-								<span>{amount}</span>
-								<button
-									type="button"
-									className="btn--amount"
-									onClick={handleAdd}
-								>
-									+
-								</button>
-							</div>
-
-							<button type="submit" className="btn">
-								add to cart
-							</button>
-						</Form>
-					)}
-				</Formik>
+				<Actions colors={colors} />
 			</div>
 		</div>
 	)

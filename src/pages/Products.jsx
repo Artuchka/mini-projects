@@ -5,10 +5,10 @@ import { SortForm } from "../components/SortForm"
 import { Product } from "../components/Product"
 
 import "./styles/products.scss"
-import { useGlobalContext } from "../AppProvider"
+import { useProductsContext } from "../AppProvider"
 
 export const Products = () => {
-	const { isLoading, items, error } = useGlobalContext()
+	const { isLoading, items, error } = useProductsContext()
 	// console.log(items)
 	return (
 		<div>

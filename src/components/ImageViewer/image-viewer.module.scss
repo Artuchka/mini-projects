@@ -4,14 +4,13 @@
 }
 
 .active-image {
-	width: 100%;
+	width: 300px;
 	aspect-ratio: 1/1;
 	object-fit: cover;
 	border-radius: 0.5em;
 }
 .images-container {
 	display: flex;
-	// justify-content: space-between;
 	flex-wrap: wrap;
 	gap: 1rem;
 	&-item {

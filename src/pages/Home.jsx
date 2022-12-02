@@ -5,8 +5,10 @@ import { Link } from "react-router-dom"
 
 import "./styles/home.scss"
 import { Footer } from "../components/Footer"
+import { useProductsContext } from "../AppProvider"
 
 export const Home = () => {
+	const { items } = useProductsContext()
 	return (
 		<main className="main">
 			<div className="hero">
@@ -28,9 +30,9 @@ export const Home = () => {
 			<section className="featured-products">
 				<h1 className="title">Featured Products</h1>
 				<div className="list">
-					<Product />
-					<Product />
-					<Product />
+					{items.slice(0, 3).map((item) => {
+						return <Product {...item} key={item.id} />
+					})}
 				</div>
 				<Link to="/products" className="btn btn--small">
 					all products
