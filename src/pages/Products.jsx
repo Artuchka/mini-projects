@@ -19,9 +19,10 @@ export const Products = () => {
 	} = useProductsContext()
 	const { search, company, category, color, price } = filters
 	console.log(items)
+
 	useEffect(() => {
 		fetchAll()
-	}, [])
+	}, [fetchAll])
 
 	if (loading) {
 		return <Loading />

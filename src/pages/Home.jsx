@@ -4,7 +4,6 @@ import { Product } from "./../components/Product"
 import { Link } from "react-router-dom"
 
 import "./styles/home.scss"
-import { Footer } from "../components/Footer"
 import { useProductsContext } from "../AppProvider"
 import { Loading } from "../components/Loading"
 import { useEffect } from "react"
@@ -19,7 +18,7 @@ export const Home = () => {
 
 	useEffect(() => {
 		fetchAll()
-	}, [])
+	}, [fetchAll])
 	if (loading) {
 		return <Loading />
 	}
@@ -54,7 +53,7 @@ export const Home = () => {
 				<h1 className="title">Featured Products</h1>
 				<div className="list">
 					{items.slice(0, 3).map((item) => {
-						return <Product {...item} key={item.id} />
+						return <Product {...item} key={item.id} view="tiles" />
 					})}
 				</div>
 				<Link to="/products" className="btn btn--small">

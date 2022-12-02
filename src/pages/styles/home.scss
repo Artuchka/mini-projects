@@ -50,6 +50,9 @@
 	align-items: center;
 	gap: 2rem;
 	margin-bottom: 2rem;
+	padding-inline: 3rem;
+	margin-inline: auto;
+	max-width: 900px;
 	.list {
 		display: grid;
 		width: 100%;

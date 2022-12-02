@@ -2,9 +2,8 @@ import axios from "axios"
 import React from "react"
 import { useReducer } from "react"
 import { useContext } from "react"
-import { useEffect } from "react"
+import { useCallback } from "react"
 import { createContext } from "react"
-import { useFetch } from "./customHooks/useFetch"
 import {
 	SET_PRODUCTS_DATA,
 	SET_PRODUCTS_ERROR,
@@ -42,19 +41,18 @@ const ProductsProvider = ({ children }) => {
 		dispatch({ type: SET_PRODUCTS_SORT, payload: sortValues })
 	}
 
-	const fetchAll = async () => {
+	const fetchAll = useCallback(async () => {
 		dispatch({ type: SET_PRODUCTS_LOADING, payload: true })
 		try {
 			const resp = await axios.get(`${apiAll}`)
 			const { data } = resp
-			console.log(data)
 			dispatch({ type: SET_PRODUCTS_DATA, payload: data })
 		} catch (error) {
 			dispatch({ type: SET_PRODUCTS_ERROR, payload: error })
 		} finally {
 			dispatch({ type: SET_PRODUCTS_LOADING, payload: false })
 		}
-	}
+	}, [])
 
 	const fetchSingle = async (id) => {
 		dispatch({ type: SET_SINGLE_LOADING, payload: true })
