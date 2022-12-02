@@ -24,6 +24,7 @@
 	container-type: inline-size;
 }
 .product-list {
+	container-type: inline-size;
 	grid-area: products;
 	padding: 1rem;
 	gap: 1rem;
@@ -36,8 +37,16 @@
 		grid-template-columns: repeat(2, 1fr);
 	}
 }
-@container (inline-size > 900px) {
+@container (min-width: 900px) {
 	.product-list {
 		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@container (min-width: 600px) {
+	.product-container-item.list {
+		display: flex;
+		flex-direction: row;
+		gap: 1rem;
 	}
 }

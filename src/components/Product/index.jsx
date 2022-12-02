@@ -15,10 +15,18 @@ export const Product = (props) => {
 		name,
 		image,
 		id,
+		view,
 	} = props
 
 	return (
-		<div className={style["product"]}>
+		<div
+			className={`product-container-item ${style["product"]} ${
+				view === "list" ? "list" : ""
+			}`}
+			style={{
+				maxWidth: view === "tiles" ? "500px" : "1000px",
+			}}
+		>
 			<div className={style["image-container"]}>
 				<div className={style["lookup"]}>
 					<Link to={`/products/${id}`}>
@@ -27,12 +35,28 @@ export const Product = (props) => {
 				</div>
 				<img src={image || defaultImage} alt="image for product" />
 			</div>
-			<div className={style["info"]}>
-				<span className={style["name"]}>{name}</span>
-				<span className={style["price"]}>
-					${new Intl.NumberFormat().format(price / 100)}
-				</span>
-			</div>
+			{view === "tiles" && (
+				<div className={style["info"]}>
+					<span className={style["name"]}>{name}</span>
+					<span className={style["price"]}>
+						${new Intl.NumberFormat().format(price / 100)}
+					</span>
+				</div>
+			)}
+			{view === "list" && (
+				<div className={`${style["info"]} ${style["info-list"]}`}>
+					<span className={style["name"]}>{name}</span>
+					<span className={style["price"]}>
+						${new Intl.NumberFormat().format(price / 100)}
+					</span>
+					<span className={style["description"]}>
+						{description.slice(0, 150)}...
+					</span>
+					<Link to={`/products/${id}`}>
+						<button className="btn btn--small">details</button>
+					</Link>
+				</div>
+			)}
 		</div>
 	)
 }

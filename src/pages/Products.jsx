@@ -59,7 +59,12 @@ export const Products = () => {
 			<SortForm className="sort-form" amount={filteredItems.length} />
 
 			<div className="products">
-				<div className="product-list">
+				<div
+					className="product-list"
+					style={{
+						gridTemplateColumns: view === "list" ? "1fr" : "",
+					}}
+				>
 					{filteredAndSortedItem.map((item) => {
 						return <Product key={item.id} {...item} view={view} />
 					})}
