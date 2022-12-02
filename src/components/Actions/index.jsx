@@ -1,12 +1,13 @@
 import React from "react"
 import { Field, Form, Formik, useFormik } from "formik"
 import { useState } from "react"
+import { useCartContext } from "../../AppProvider"
 
-export const Actions = ({ colors }) => {
+export const Actions = ({ colors, item }) => {
 	const [amount, setAmount] = useState(1)
+	const { addItemToCart } = useCartContext()
 	const handleAddToCard = (values) => {
-		console.log("kinda adding to cart")
-		console.log({ ...values, amount })
+		addItemToCart({ ...item, ...values, amount })
 	}
 
 	return (
@@ -26,7 +27,11 @@ export const Actions = ({ colors }) => {
 					}}
 				>
 					<Colors colors={colors} values={values} />
-					<Count amount={amount} setAmount={setAmount} />
+					<Count
+						amount={amount}
+						setAmount={setAmount}
+						max={item.stock}
+					/>
 
 					<button type="submit" className="btn">
 						add to cart
@@ -37,9 +42,9 @@ export const Actions = ({ colors }) => {
 	)
 }
 
-const Count = ({ amount, setAmount }) => {
+export const Count = ({ amount, setAmount, max }) => {
 	const handleAdd = () => {
-		setAmount((prev) => prev + 1)
+		setAmount((prev) => Math.min(prev + 1, max))
 	}
 	const handleRemove = () => {
 		setAmount((prev) => prev - 1)

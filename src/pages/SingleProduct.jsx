@@ -15,7 +15,6 @@ export const SingleProduct = () => {
 		isSingleLoading: loading,
 		errorSingle: error,
 	} = useProductsContext()
-	console.log(loading)
 
 	useEffect(() => {
 		fetchSingle(id)
@@ -70,7 +69,7 @@ export const SingleProduct = () => {
 					<span>{company}</span>
 				</div>
 			</div>
-			<Actions colors={colors} />
+			{stock > 0 && <Actions colors={colors} item={item} />}
 		</div>
 	)
 }

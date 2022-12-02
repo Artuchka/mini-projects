@@ -5,6 +5,9 @@ import { useContext } from "react"
 import { useCallback } from "react"
 import { createContext } from "react"
 import {
+	ADD_CART_ITEM,
+	CLEAR_CART,
+	REMOVE_CART_ITEM,
 	SET_PRODUCTS_DATA,
 	SET_PRODUCTS_ERROR,
 	SET_PRODUCTS_FILTERS,
@@ -79,8 +82,27 @@ const ProductsProvider = ({ children }) => {
 const CartProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducerCart, initialCart)
 
+	const addItemToCart = (item) => {
+		console.log(item)
+		dispatch({ type: ADD_CART_ITEM, payload: item })
+	}
+	const handleCartItemRemove = ({ id, color }) => {
+		console.log(id, color)
+		dispatch({ type: REMOVE_CART_ITEM, payload: { id, color } })
+	}
+	const handleCartClear = () => {
+		dispatch({ type: CLEAR_CART })
+	}
+
 	return (
-		<AppContextCart.Provider value={{ ...state }}>
+		<AppContextCart.Provider
+			value={{
+				...state,
+				addItemToCart,
+				handleCartClear,
+				handleCartItemRemove,
+			}}
+		>
 			{children}
 		</AppContextCart.Provider>
 	)

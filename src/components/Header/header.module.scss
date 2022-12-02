@@ -89,7 +89,13 @@ $text-color: rgb(37, 88, 122);
 		text-transform: capitalize;
 		font-size: 1.5rem;
 		cursor: pointer;
+		a {
+			color: $text-color;
+
+			text-decoration: none;
+		}
 		span {
+			text-decoration: none;
 			position: relative;
 			small {
 				width: 90%;

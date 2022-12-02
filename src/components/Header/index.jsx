@@ -55,14 +55,18 @@ export const Header = () => {
 				</ul>
 				<div className={styles["icons"]}>
 					<div className={styles["cart-icon"]}>
-						cart
-						<span>
-							<FaShoppingCart />
-							<small>{0}</small>
-						</span>
+						<Link to="/cart" onClick={handleRouteClick}>
+							cart
+							<span>
+								<FaShoppingCart />
+								<small>{0}</small>
+							</span>
+						</Link>
 					</div>
-					<div className="login-icon">
-						login <FaUserPlus />
+					<div className={styles["login-icon"]}>
+						<Link to="/login" onClick={handleRouteClick}>
+							login <FaUserPlus />
+						</Link>
 					</div>
 				</div>
 			</div>

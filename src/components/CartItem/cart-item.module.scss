@@ -1,0 +1,32 @@
+.cart-list__item {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	.image {
+		width: 100px;
+		aspect-ratio: 1/1;
+		border-radius: 0.5em;
+	}
+	.info {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4em;
+		justify-content: center;
+		.name {
+			font-weight: bold;
+			text-transform: capitalize;
+		}
+
+		.color {
+			span {
+				aspect-ratio: 1/1;
+				height: 15px;
+				display: inline-block;
+				border-radius: 50%;
+			}
+		}
+	}
+
+	.count {
+	}
+}
