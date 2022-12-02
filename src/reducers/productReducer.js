@@ -40,8 +40,9 @@ export const reducerProd = (state, action) => {
 		return { ...state, isAllLoading: action.payload }
 	}
 	if (action.type === SET_PRODUCTS_ERROR) {
+		console.log("prod err", action.payload)
 		if (!action.payload.response) {
-			return { ...state, errorSingle: action.payload }
+			return { ...state, errorAll: action.payload }
 		}
 		const {
 			response: { data: message, status: code },

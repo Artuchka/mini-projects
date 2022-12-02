@@ -7,7 +7,7 @@ import { FaUserPlus, FaShoppingCart } from "react-icons/fa"
 import imgLogo from "./../../assets/img/logo.svg"
 import styles from "./header.module.scss"
 import { useState } from "react"
-console.log(styles)
+
 export const Header = () => {
 	const [isMenuOpen, setMenuOpen] = useState(false)
 	const handleMenuOpen = () => {

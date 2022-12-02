@@ -2,9 +2,13 @@ import axios from "axios"
 import React from "react"
 import { useReducer } from "react"
 import { useContext } from "react"
+import { useEffect } from "react"
 import { createContext } from "react"
 import { useFetch } from "./customHooks/useFetch"
 import {
+	SET_PRODUCTS_DATA,
+	SET_PRODUCTS_ERROR,
+	SET_PRODUCTS_LOADING,
 	SET_SINGLE_DATA,
 	SET_SINGLE_ERROR,
 	SET_SINGLE_LOADING,
@@ -14,6 +18,8 @@ import { initialProducts, reducerProd } from "./reducers/productReducer"
 
 const AppContextProducts = createContext()
 const AppContextCart = createContext()
+
+const apiAll = "https://course-api.com/react-store-products"
 const apiSingle = "https://course-api.com/react-store-single-product"
 
 export const AppProvider = ({ children }) => {
@@ -26,7 +32,24 @@ export const AppProvider = ({ children }) => {
 
 const ProductsProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducerProd, initialProducts)
-	const { isLoading, items, error } = useFetch()
+
+	useEffect(() => {
+		fetchAll()
+	}, [])
+
+	const fetchAll = async () => {
+		dispatch({ type: SET_PRODUCTS_LOADING, payload: true })
+		try {
+			const resp = await axios.get(`${apiAll}`)
+			const { data } = resp
+			console.log(data)
+			dispatch({ type: SET_PRODUCTS_DATA, payload: data })
+		} catch (error) {
+			dispatch({ type: SET_PRODUCTS_ERROR, payload: error })
+		} finally {
+			dispatch({ type: SET_PRODUCTS_LOADING, payload: false })
+		}
+	}
 
 	const fetchSingle = async (id) => {
 		dispatch({ type: SET_SINGLE_LOADING, payload: true })
@@ -42,9 +65,7 @@ const ProductsProvider = ({ children }) => {
 	}
 
 	return (
-		<AppContextProducts.Provider
-			value={{ isLoading, items, error, ...state, fetchSingle }}
-		>
+		<AppContextProducts.Provider value={{ ...state, fetchSingle }}>
 			{children}
 		</AppContextProducts.Provider>
 	)

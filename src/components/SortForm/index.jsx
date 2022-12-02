@@ -15,7 +15,7 @@ const sorttypes = [
 	{ value: "name_az", text: "Name(A-Z)" },
 	{ value: "name_za", text: "Name(Z-A)" },
 ]
-export const SortForm = () => {
+export const SortForm = ({ className }) => {
 	return (
 		<Formik
 			initialValues={{
@@ -28,7 +28,7 @@ export const SortForm = () => {
 					onChange={() => {
 						console.log(props.values)
 					}}
-					className={style["form"]}
+					className={`${className} ${style["form"]}`}
 				>
 					<div className={style["view-container"]}>
 						{viewtypes.map((view) => {

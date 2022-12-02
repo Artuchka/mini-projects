@@ -1,6 +1,42 @@
+@import "./constants.scss";
+
+.products-root {
+	display: grid;
+	grid-template-areas: "filter" "sort" "products";
+
+	@media (min-width: $tablet-size) {
+		grid-template-columns: 300px auto;
+		grid-template-areas:
+			"filter sort"
+			"filter products";
+	}
+}
+
+.sort-form {
+	grid-area: sort;
+}
+.filter-form {
+	grid-area: filter;
+}
+.products {
+	container-type: inline-size;
+	container-name: list;
+}
 .product-list {
-	display: flex;
-	flex-direction: column;
+	grid-area: products;
+	padding: 1rem;
 	gap: 1rem;
-	align-items: center;
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
+}
+
+@container list (inline-size > 600px) {
+	.product-list {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+@container list (inline-size > 900px) {
+	.product-list {
+		grid-template-columns: repeat(3, 1fr);
+	}
 }

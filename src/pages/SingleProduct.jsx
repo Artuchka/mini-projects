@@ -1,13 +1,8 @@
 import React from "react"
 import { Link, useParams } from "react-router-dom"
-import { Sugar } from "../components/Sugar"
 import { ImageViewer } from "../components/ImageViewer"
 import "./styles/singleProduct.scss"
 import { useProductsContext } from "../AppProvider"
-import defImg1 from "./../assets/img/singleProduct/1.jpeg"
-import defImg2 from "./../assets/img/singleProduct/2.jpeg"
-import defImg3 from "./../assets/img/singleProduct/3.jpeg"
-import defImg4 from "./../assets/img/singleProduct/4.jpeg"
 import { useState } from "react"
 import { Actions } from "../components/Actions"
 import { useFetchSingle } from "../customHooks/useFetchSingle"
@@ -23,6 +18,7 @@ export const SingleProduct = () => {
 		errorSingle: error,
 	} = useProductsContext()
 	console.log(loading)
+
 	useEffect(() => {
 		fetchSingle(id)
 	}, [id])
@@ -33,7 +29,7 @@ export const SingleProduct = () => {
 
 	if (error.code !== "") {
 		const { message, code, name } = error
-
+		console.log(error)
 		return (
 			<h1>
 				Error occured: {message} {code}
@@ -56,7 +52,6 @@ export const SingleProduct = () => {
 	} = item
 	return (
 		<div className="single-product">
-			<Sugar />
 			<div className="main">
 				<Link to="/products" className="btn">
 					back to products

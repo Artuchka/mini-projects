@@ -6,9 +6,26 @@ import { Link } from "react-router-dom"
 import "./styles/home.scss"
 import { Footer } from "../components/Footer"
 import { useProductsContext } from "../AppProvider"
+import { Loading } from "../components/Loading"
 
 export const Home = () => {
-	const { items } = useProductsContext()
+	const {
+		items,
+		isAllLoading: loading,
+		errorAll: error,
+	} = useProductsContext()
+	if (loading) {
+		return <Loading />
+	}
+
+	if (error.code !== "") {
+		console.log(error)
+		return (
+			<h1>
+				Error occured: {error.message} {error.code}
+			</h1>
+		)
+	}
 	return (
 		<main className="main">
 			<div className="hero">
@@ -69,7 +86,6 @@ export const Home = () => {
 					<button className="btn">subscribe</button>
 				</form>
 			</section>
-			<Footer />
 		</main>
 	)
 }

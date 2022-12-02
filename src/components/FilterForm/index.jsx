@@ -7,7 +7,7 @@ const categoryList = ["all", "office", "living room"]
 const companyList = ["all", "marcos", "liddy", "ikea"]
 const colorsList = ["all", "red", "green", "violet", "gray", "orange"]
 
-export const FilterForm = () => {
+export const FilterForm = ({ className }) => {
 	return (
 		<Formik
 			initialValues={{
@@ -24,7 +24,7 @@ export const FilterForm = () => {
 					onChange={() => {
 						console.log(props.values)
 					}}
-					className={style["form"]}
+					className={`${className} ${style["form"]}`}
 				>
 					<Field
 						type="text"

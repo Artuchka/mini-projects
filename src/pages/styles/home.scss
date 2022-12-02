@@ -1,7 +1,4 @@
-$main-color: #ab7a5f;
-$title-color: #102a42;
-$text-color: #617d98;
-$footer-bg-color: #222;
+@import "./constants.scss";
 
 .btn {
 	text-decoration: none;
@@ -47,14 +44,21 @@ $footer-bg-color: #222;
 }
 
 .featured-products {
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 2rem;
 	.list {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 1rem;
+		display: grid;
+		width: 100%;
+		grid-template-columns: auto;
+		grid-template-rows: repeat(3, 1fr);
+		gap: 2rem;
+		@media (min-width: $tablet-size) {
+			grid-template-columns: repeat(3, 1fr);
+			grid-template-rows: auto;
+		}
 	}
 }
 
@@ -76,6 +80,10 @@ $footer-bg-color: #222;
 		flex-direction: column;
 		align-items: center;
 		gap: 1rem;
+		@media (min-width: $desktop-size) {
+			// flex-basis: 0.33;
+			flex-direction: row;
+		}
 	}
 }
 

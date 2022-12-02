@@ -6,7 +6,8 @@ $footer-bg-color: #222;
 .product {
 	background-color: #fff;
 	max-width: 600px;
-	width: 90%;
+	margin-inline: auto;
+	width: 100%;
 
 	.image-container {
 		height: 200px;
