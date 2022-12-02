@@ -7,6 +7,7 @@ import { FaUserPlus, FaShoppingCart } from "react-icons/fa"
 import imgLogo from "./../../assets/img/logo.svg"
 import styles from "./header.module.scss"
 import { useState } from "react"
+import { navLinks } from "../../utils"
 
 export const Header = () => {
 	const [isMenuOpen, setMenuOpen] = useState(false)
@@ -15,6 +16,10 @@ export const Header = () => {
 	}
 	const handleMenuClose = () => {
 		setMenuOpen(false)
+	}
+
+	const handleRouteClick = () => {
+		handleMenuClose()
 	}
 
 	return (
@@ -34,21 +39,19 @@ export const Header = () => {
 					</div>
 				</div>
 				<ul className={styles["menu-list"]}>
-					<li>
-						<Link to="/" className={styles["menu-item"]}>
-							Home
-						</Link>
-					</li>
-					<li>
-						<Link to="/about" className={styles["menu-item"]}>
-							About
-						</Link>
-					</li>
-					<li>
-						<Link to="/products" className={styles["menu-item"]}>
-							Products
-						</Link>
-					</li>
+					{navLinks.map((link) => {
+						return (
+							<li key={link.url}>
+								<Link
+									to={link.url}
+									className={styles["menu-item"]}
+									onClick={handleRouteClick}
+								>
+									{link.name}
+								</Link>
+							</li>
+						)
+					})}
 				</ul>
 				<div className={styles["icons"]}>
 					<div className={styles["cart-icon"]}>

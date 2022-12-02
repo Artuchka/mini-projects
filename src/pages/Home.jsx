@@ -27,7 +27,7 @@ export const Home = () => {
 		)
 	}
 	return (
-		<main className="main">
+		<>
 			<div className="hero">
 				<h1 className="title">
 					<div className="part">Design Your</div>
@@ -86,6 +86,6 @@ export const Home = () => {
 					<button className="btn">subscribe</button>
 				</form>
 			</section>
-		</main>
+		</>
 	)
 }

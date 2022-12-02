@@ -5,7 +5,6 @@ import styles from "./image-viewer.module.scss"
 export const ImageViewer = ({ images }) => {
 	const [activeIndex, setActiveIndex] = useState(0)
 
-	console.log(images)
 	const { url, width } = images[activeIndex]
 	return (
 		<div className={styles["image-viewer"]}>

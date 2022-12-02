@@ -3,9 +3,7 @@ import { Link, useParams } from "react-router-dom"
 import { ImageViewer } from "../components/ImageViewer"
 import "./styles/singleProduct.scss"
 import { useProductsContext } from "../AppProvider"
-import { useState } from "react"
 import { Actions } from "../components/Actions"
-import { useFetchSingle } from "../customHooks/useFetchSingle"
 import { Loading } from "../components/Loading"
 import { useEffect } from "react"
 
@@ -52,29 +50,27 @@ export const SingleProduct = () => {
 	} = item
 	return (
 		<div className="single-product">
-			<div className="main">
-				<Link to="/products" className="btn">
-					back to products
-				</Link>
-				<ImageViewer images={images} />
+			<Link to="/products" className="btn">
+				back to products
+			</Link>
+			<ImageViewer images={images} />
 
-				<div className="info">
-					<h2 className="name">{name}</h2>
-					<div className="price">
-						${new Intl.NumberFormat().format(price / 100)}
-					</div>
-					<div className="desc">{description}</div>
-					<div className="grid-info">
-						<span>Available</span>
-						<span>{stock}</span>
-						<span>SKU</span>
-						<span>{id}</span>
-						<span>Brand</span>
-						<span>{company}</span>
-					</div>
+			<div className="info">
+				<h2 className="name">{name}</h2>
+				<div className="price">
+					${new Intl.NumberFormat().format(price / 100)}
 				</div>
-				<Actions colors={colors} />
+				<div className="desc">{description}</div>
+				<div className="grid-info">
+					<span>Available</span>
+					<span>{stock}</span>
+					<span>SKU</span>
+					<span>{id}</span>
+					<span>Brand</span>
+					<span>{company}</span>
+				</div>
 			</div>
+			<Actions colors={colors} />
 		</div>
 	)
 }

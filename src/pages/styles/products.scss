@@ -1,11 +1,13 @@
 @import "./constants.scss";
 
 .products-root {
+	padding: 2rem;
 	display: grid;
 	grid-template-areas: "filter" "sort" "products";
+	width: 100%;
 
-	@media (min-width: $tablet-size) {
-		grid-template-columns: 300px auto;
+	@media (min-width: calc($tablet-size + 3rem)) {
+		grid-template-columns: 250px auto;
 		grid-template-areas:
 			"filter sort"
 			"filter products";
@@ -20,7 +22,6 @@
 }
 .products {
 	container-type: inline-size;
-	container-name: list;
 }
 .product-list {
 	grid-area: products;
@@ -30,12 +31,12 @@
 	grid-template-columns: repeat(1, 1fr);
 }
 
-@container list (inline-size > 600px) {
+@container (min-width: 600px) {
 	.product-list {
 		grid-template-columns: repeat(2, 1fr);
 	}
 }
-@container list (inline-size > 900px) {
+@container (inline-size > 900px) {
 	.product-list {
 		grid-template-columns: repeat(3, 1fr);
 	}

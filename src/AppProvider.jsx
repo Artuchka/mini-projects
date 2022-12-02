@@ -8,7 +8,9 @@ import { useFetch } from "./customHooks/useFetch"
 import {
 	SET_PRODUCTS_DATA,
 	SET_PRODUCTS_ERROR,
+	SET_PRODUCTS_FILTERS,
 	SET_PRODUCTS_LOADING,
+	SET_PRODUCTS_SORT,
 	SET_SINGLE_DATA,
 	SET_SINGLE_ERROR,
 	SET_SINGLE_LOADING,
@@ -33,9 +35,12 @@ export const AppProvider = ({ children }) => {
 const ProductsProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducerProd, initialProducts)
 
-	useEffect(() => {
-		fetchAll()
-	}, [])
+	const setFilters = (filtersValues) => {
+		dispatch({ type: SET_PRODUCTS_FILTERS, payload: filtersValues })
+	}
+	const setSort = (sortValues) => {
+		dispatch({ type: SET_PRODUCTS_SORT, payload: sortValues })
+	}
 
 	const fetchAll = async () => {
 		dispatch({ type: SET_PRODUCTS_LOADING, payload: true })
@@ -65,7 +70,9 @@ const ProductsProvider = ({ children }) => {
 	}
 
 	return (
-		<AppContextProducts.Provider value={{ ...state, fetchSingle }}>
+		<AppContextProducts.Provider
+			value={{ ...state, fetchAll, fetchSingle, setFilters, setSort }}
+		>
 			{children}
 		</AppContextProducts.Provider>
 	)
