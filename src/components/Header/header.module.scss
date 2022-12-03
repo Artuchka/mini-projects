@@ -142,6 +142,26 @@ $desktop-size: 900px;
 		.menu-list {
 			flex-direction: row;
 			margin-left: auto;
+
+			li {
+				transition: none;
+				&:hover {
+					background-color: white;
+					.menu-item {
+						transform: none;
+						position: relative;
+						&::after {
+							position: absolute;
+							bottom: -0.5rem;
+							left: 0;
+							right: 0;
+							background-color: $main-color;
+							height: 0.2em;
+							content: "";
+						}
+					}
+				}
+			}
 		}
 		.icons {
 			margin-left: auto;
