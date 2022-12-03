@@ -24,7 +24,9 @@ export const Header = () => {
 
 	return (
 		<div className={styles.header}>
-			<img src={imgLogo} alt="" className="logo" />
+			<Link to="/">
+				<img src={imgLogo} alt="" className="logo" />
+			</Link>
 			<AiOutlineMenu className={styles.menu} onClick={handleMenuOpen} />
 
 			<div

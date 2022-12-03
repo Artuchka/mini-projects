@@ -1,5 +1,7 @@
 $main-color: #ab7a5f;
 $text-color: rgb(37, 88, 122);
+$tablet-size: 600px;
+$desktop-size: 900px;
 
 .header {
 	display: flex;
@@ -113,6 +115,37 @@ $text-color: rgb(37, 88, 122);
 				text-align: center;
 				translate: 50% -50%;
 			}
+		}
+	}
+}
+
+@media (min-width: $desktop-size) {
+	.header {
+		justify-content: flex-start;
+	}
+	.menu {
+		display: none;
+	}
+	.menu-mobile {
+		transform: translateX(0);
+		position: initial;
+		padding: 0;
+		flex-direction: row;
+		margin-left: auto;
+		margin-right: auto;
+		width: 100%;
+		gap: 0;
+		.heading {
+			display: none;
+		}
+
+		.menu-list {
+			flex-direction: row;
+			margin-left: auto;
+		}
+		.icons {
+			margin-left: auto;
+			font-size: 1.3rem;
 		}
 	}
 }
