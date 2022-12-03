@@ -4,6 +4,9 @@
 	align-items: center;
 	gap: 1rem;
 	padding: 1rem;
+	@media (max-width: 480px) {
+		flex-wrap: wrap;
+	}
 	.line {
 		flex-grow: 1;
 		background-color: rgb(123, 122, 122);
