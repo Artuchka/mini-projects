@@ -1,4 +1,9 @@
-import { ADD_CART_ITEM, CLEAR_CART, REMOVE_CART_ITEM } from "./actionTypes"
+import {
+	ADD_CART_ITEM,
+	CLEAR_CART,
+	REMOVE_CART_ITEM,
+	SET_AMOUNT_CART,
+} from "./actionTypes"
 
 export const initialCart = {
 	items: [],
@@ -42,5 +47,16 @@ export const reducerCart = (state, action) => {
 		return { ...state, items: newItems }
 	}
 
+	if (action.type === SET_AMOUNT_CART) {
+		const { id, color, amount: amountPayload } = action.payload
+		const newItems = state.items.map((item) => {
+			if (item.id === id && item.color === color) {
+				return { ...item, amount: amountPayload }
+			}
+			return item
+		})
+		console.log("newItems = ", newItems)
+		return { ...state, items: newItems }
+	}
 	throw new Error(`unexpected3 action type requested: ${action.type}`)
 }

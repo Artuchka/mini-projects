@@ -14,3 +14,5 @@ export const ADD_CART_ITEM = "add-cart-itemtothecart"
 
 export const REMOVE_CART_ITEM = "remove-cart-item"
 export const CLEAR_CART = "clear-cart"
+
+export const SET_AMOUNT_CART = "add-amount-cart"

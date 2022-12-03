@@ -2,12 +2,15 @@ import axios from "axios"
 import React from "react"
 import { useReducer } from "react"
 import { useContext } from "react"
+import { useEffect } from "react"
 import { useCallback } from "react"
 import { createContext } from "react"
 import {
+	ADD_AMOUNT_CART,
 	ADD_CART_ITEM,
 	CLEAR_CART,
 	REMOVE_CART_ITEM,
+	SET_AMOUNT_CART,
 	SET_PRODUCTS_DATA,
 	SET_PRODUCTS_ERROR,
 	SET_PRODUCTS_FILTERS,
@@ -19,6 +22,7 @@ import {
 } from "./reducers/actionTypes"
 import { initialCart, reducerCart } from "./reducers/cartReducer"
 import { initialProducts, reducerProd } from "./reducers/productReducer"
+import { getFromLS, saveToLS } from "./utils"
 
 const AppContextProducts = createContext()
 const AppContextCart = createContext()
@@ -80,7 +84,10 @@ const ProductsProvider = ({ children }) => {
 }
 
 const CartProvider = ({ children }) => {
-	const [state, dispatch] = useReducer(reducerCart, initialCart)
+	const [state, dispatch] = useReducer(
+		reducerCart,
+		getFromLS("cart") || initialCart
+	)
 
 	const addItemToCart = (item) => {
 		console.log(item)
@@ -94,6 +101,15 @@ const CartProvider = ({ children }) => {
 		dispatch({ type: CLEAR_CART })
 	}
 
+	const handleCartSetAmount = ({ id, color, amount }) => {
+		console.log("handling ", id, color, amount)
+		dispatch({ type: SET_AMOUNT_CART, payload: { id, color, amount } })
+	}
+
+	useEffect(() => {
+		saveToLS("cart", { ...state })
+	}, [state])
+
 	return (
 		<AppContextCart.Provider
 			value={{
@@ -101,6 +117,7 @@ const CartProvider = ({ children }) => {
 				addItemToCart,
 				handleCartClear,
 				handleCartItemRemove,
+				handleCartSetAmount,
 			}}
 		>
 			{children}

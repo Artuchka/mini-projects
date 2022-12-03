@@ -5,6 +5,7 @@ import { AiFillDelete } from "react-icons/ai"
 
 import style from "./cart-item.module.scss"
 import { useCartContext } from "../../AppProvider"
+import { useEffect } from "react"
 
 export const CartItem = (props) => {
 	const {
@@ -27,7 +28,11 @@ export const CartItem = (props) => {
 
 	const [amount, setAmount] = useState(amountChosen)
 
-	const { handleCartItemRemove } = useCartContext()
+	useEffect(() => {
+		handleCartSetAmount({ id, color, amount })
+	}, [amount])
+
+	const { handleCartItemRemove, handleCartSetAmount } = useCartContext()
 
 	return (
 		<div className={style["cart-list__item"]}>
