@@ -5,7 +5,10 @@ export const navLinks = [
 ]
 
 export const formatPrice = (price) => {
-	return Intl.NumberFormat({ currency: "USD" }).format(price / 100)
+	return Intl.NumberFormat("us-US", {
+		style: "currency",
+		currency: "USD",
+	}).format(price / 100)
 }
 
 const app_key = "React_E-commerce"
@@ -17,6 +20,5 @@ export const saveToLS = (name, data) => {
 export const getFromLS = (name) => {
 	const jsoned = localStorage.getItem(`${app_key}${name}`)
 	const data = JSON.parse(jsoned)
-	console.log(data)
 	return data
 }

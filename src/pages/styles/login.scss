@@ -1,0 +1,62 @@
+.login-page {
+	.form {
+		background-color: rgb(172, 172, 172);
+		border-radius: 0.3em;
+		max-width: 300px;
+		margin: 5rem auto;
+		padding: 1.4rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1.4rem;
+		.title {
+			font-size: 2rem;
+			font-weight: bold;
+		}
+		.row {
+			width: 100%;
+			position: relative;
+			.label {
+				position: absolute;
+				top: 50%;
+				translate: 0 -50%;
+				left: 0.5em;
+				transition: all 0.3s ease-in-out;
+				font-size: 0.9rem;
+				text-transform: capitalize;
+			}
+			.input {
+				background: rgba(255, 255, 255, 0.463);
+				width: 100%;
+				font-size: 1rem;
+				border: 1px solid black;
+				padding: 0.5em;
+				outline: none;
+				&:focus {
+					& + .label {
+						top: -0.5em;
+						left: 0;
+					}
+				}
+				&:not(:placeholder-shown) {
+					border-color: green;
+					background: rgb(255, 255, 255);
+
+					& + .label {
+						top: -0.5em;
+						left: 0;
+					}
+				}
+
+				&:placeholder-shown {
+					border-color: red;
+				}
+			}
+		}
+	}
+
+	.actions {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+}

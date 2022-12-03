@@ -5,12 +5,17 @@ import { useContext } from "react"
 import { useEffect } from "react"
 import { useCallback } from "react"
 import { createContext } from "react"
+import { signIn } from "./firebase/signIn"
+import { signUp } from "./firebase/signUp"
 import {
 	ADD_AMOUNT_CART,
 	ADD_CART_ITEM,
 	CLEAR_CART,
+	DISABLE_ERROR,
+	LOGIN_USER_CART,
 	REMOVE_CART_ITEM,
 	SET_AMOUNT_CART,
+	SET_ERROR,
 	SET_PRODUCTS_DATA,
 	SET_PRODUCTS_ERROR,
 	SET_PRODUCTS_FILTERS,
@@ -19,6 +24,8 @@ import {
 	SET_SINGLE_DATA,
 	SET_SINGLE_ERROR,
 	SET_SINGLE_LOADING,
+	SET_USERTOKEN_CART,
+	USER_LOGOUT,
 } from "./reducers/actionTypes"
 import { initialCart, reducerCart } from "./reducers/cartReducer"
 import { initialProducts, reducerProd } from "./reducers/productReducer"
@@ -106,6 +113,40 @@ const CartProvider = ({ children }) => {
 		dispatch({ type: SET_AMOUNT_CART, payload: { id, color, amount } })
 	}
 
+	const handleLogin = (credentials) => {
+		signIn(
+			credentials,
+			(tokenResp) => {
+				console.log("got token ", tokenResp)
+				dispatch({ type: SET_USERTOKEN_CART, payload: tokenResp })
+			},
+			(resp) => {
+				console.log("got error ", resp)
+				dispatch({ type: SET_ERROR, payload: resp })
+			}
+		)
+	}
+	const handleSignUp = (credentials) => {
+		signUp(
+			credentials,
+			(tokenResp) => {
+				console.log("got token ", tokenResp)
+				dispatch({ type: SET_USERTOKEN_CART, payload: tokenResp })
+			},
+			(resp) => {
+				console.log("got error ", resp)
+				dispatch({ type: SET_ERROR, payload: resp })
+			}
+		)
+	}
+
+	const disableError = () => {
+		dispatch({ type: DISABLE_ERROR })
+	}
+	const handleLogOut = () => {
+		dispatch({ type: USER_LOGOUT })
+	}
+
 	useEffect(() => {
 		saveToLS("cart", { ...state })
 	}, [state])
@@ -118,6 +159,10 @@ const CartProvider = ({ children }) => {
 				handleCartClear,
 				handleCartItemRemove,
 				handleCartSetAmount,
+				handleLogin,
+				handleSignUp,
+				disableError,
+				handleLogOut,
 			}}
 		>
 			{children}

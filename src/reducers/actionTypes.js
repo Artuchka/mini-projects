@@ -16,3 +16,12 @@ export const REMOVE_CART_ITEM = "remove-cart-item"
 export const CLEAR_CART = "clear-cart"
 
 export const SET_AMOUNT_CART = "add-amount-cart"
+
+export const LOGIN_USER_CART = "LOGINUSERCART"
+export const SIGNUP_USER_CART = "SIGNUPUSERCART"
+
+export const SET_USERTOKEN_CART = "USERTOKENSET"
+
+export const SET_ERROR = "errorSett"
+export const DISABLE_ERROR = "disable error"
+export const USER_LOGOUT = "LOGOUT USER"

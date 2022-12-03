@@ -5,12 +5,13 @@ import { Footer } from "./components/Footer"
 import { Sugar } from "./components/Sugar"
 
 import "./pages/styles/layout.scss"
+import { Error } from "./components/Error"
 
 export const Layout = () => {
 	const { pathname } = useLocation()
-	console.log(pathname)
 	return (
 		<div className="app">
+			<Error />
 			<Header></Header>
 			{pathname !== "/" && <Sugar />}
 			<main className="main">

@@ -3,14 +3,19 @@ import { Link } from "react-router-dom"
 
 import { AiOutlineMenu } from "react-icons/ai"
 import { FaUserPlus, FaShoppingCart } from "react-icons/fa"
+import { ImUserMinus } from "react-icons/im"
 
 import imgLogo from "./../../assets/img/logo.svg"
 import styles from "./header.module.scss"
 import { useState } from "react"
 import { navLinks } from "../../utils"
+import { useCartContext } from "../../AppProvider"
 
 export const Header = () => {
 	const [isMenuOpen, setMenuOpen] = useState(false)
+	const { userToken, handleLogOut } = useCartContext()
+	console.log(userToken)
+
 	const handleMenuOpen = () => {
 		setMenuOpen(true)
 	}
@@ -54,6 +59,15 @@ export const Header = () => {
 							</li>
 						)
 					})}
+					{userToken.email !== "" && (
+						<Link
+							to="/checkout"
+							className={styles["menu-item"]}
+							onClick={handleRouteClick}
+						>
+							checkout
+						</Link>
+					)}
 				</ul>
 				<div className={styles["icons"]}>
 					<div className={styles["cart-icon"]}>
@@ -66,9 +80,17 @@ export const Header = () => {
 						</Link>
 					</div>
 					<div className={styles["login-icon"]}>
-						<Link to="/login" onClick={handleRouteClick}>
-							login <FaUserPlus />
-						</Link>
+						{userToken.email === "" && (
+							<Link to="/login" onClick={handleRouteClick}>
+								login <FaUserPlus />
+							</Link>
+						)}
+						{userToken.email !== "" && (
+							<div onClick={handleLogOut}>
+								logout
+								<ImUserMinus />
+							</div>
+						)}
 					</div>
 				</div>
 			</div>

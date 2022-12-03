@@ -1,0 +1,19 @@
+.error {
+	position: absolute;
+	top: 10rem;
+	left: 50%;
+	translate: -100vmax;
+	z-index: 3;
+	transition: all 0.3s ease-in-out;
+	min-width: 10rem;
+	min-height: 2rem;
+
+	padding: 1rem;
+	background-color: #fff;
+	border-radius: 0.3em;
+	box-shadow: 0 0 10px 0 black;
+
+	&.open {
+		translate: -50%;
+	}
+}
