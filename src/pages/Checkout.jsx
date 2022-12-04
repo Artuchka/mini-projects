@@ -1,6 +1,7 @@
 import React from "react"
 import { Link, Navigate } from "react-router-dom"
 import { useCartContext } from "../AppProvider"
+import { StripeCheckout } from "../components/StripeCheckout"
 import { formatPrice } from "../utils"
 import "./styles/checkout.scss"
 export const Checkout = () => {
@@ -31,6 +32,7 @@ export const Checkout = () => {
 			<span>Your total is {formatPrice(total)}</span>
 			<span>Test Card Number: 4242 4242 4242 4242</span>
 			<div className="stripe">im stripe form</div>
+			<StripeCheckout />
 		</div>
 	)
 }
